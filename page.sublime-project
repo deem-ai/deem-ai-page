@@ -1,0 +1,18 @@
+{
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":[
+				"exclude_example"
+			],
+			"file_exclude_patterns": [
+				"favicon*",
+				"android-chrome*",
+				"apple-touch*",
+				"mstile*",
+				"safari-pinned*"
+			],
+			"path": "."
+		}
+	]
+}

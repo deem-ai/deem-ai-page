@@ -1,0 +1,31 @@
+/*customs.sccs*/
+
+/* 1. import only the necessary Bootstrap files */
+@import "~bootstrap/scss/functions"; 
+@import "~bootstrap/scss/variables";
+
+/* 2. begin customization ---- */
+
+/*Color scheme*/
+$theme-colors: (
+    "primary" : #255C99,
+    "secondary": #ABEF00,
+    "gray": #B9C1BC,
+    "light": #F5F8F4,
+    "dark": #020216
+);
+
+/* 3. import Bootstrap to set the changes! */
+@import "~bootstrap/scss/bootstrap";
+
+/* 4. add @mixin or @extend customizations here */
+
+/* create new custom classes from existing classes */
+/*.row-dark {
+    @extend .row;
+    background-color: #333333;
+    color: #ffffff;
+}
+*/
+
+/* use @mixins */

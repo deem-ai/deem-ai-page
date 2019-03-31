@@ -1,0 +1,78 @@
+@import '../custom';
+
+.hero {
+	/*Sizing*/
+	max-width: 100%;
+	width: 100vw;
+	height: 100vh;
+
+	/* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Text styles */
+    text-align: center;
+    color: white;
+
+    /* Background styles */
+    background-image: url('./cover.jpg');
+    background-color: theme-color-level("dark",-2);
+    background-blend-mode: overlay;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero h1 {
+    /* Text styles */
+    font-size: 4em;
+    
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+
+.hero .btn {
+    /* Positioning and sizing */
+    //display: block;
+    width: 200px;
+    
+    /* Padding and margins */
+    padding: 1em;
+    margin-top: 50px;
+    //margin-left: auto;
+    //margin-right: auto;
+    
+    /* Text styles */
+    color: black;
+    text-decoration: none;
+    font-size: 1.5em;
+    
+    /* Border styles */
+    border: 1.5px solid black;
+    //border-radius: 20px;
+
+    /* Background styles */
+    //background-color: rgba(147, 112, 219, 0.8);
+}
+
+.hr-light {
+    height: 1px;
+    width: 90%;
+    color: gray;
+    background-color: white;
+    border: none;
+}
+
+.hr-dark {
+    height: 1px;
+    color: gray;
+    background-color: black;
+    border: none;
+}

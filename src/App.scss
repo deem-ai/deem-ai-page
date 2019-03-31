@@ -1,0 +1,16 @@
+.App {
+	padding-top: 56px;
+	/*margin-top: 15px;*/
+}
+
+.App .navbar-brand {
+	font-weight: bold;
+}
+
+.navbar {
+    -webkit-transition: all 0.6s ease-out;
+    -moz-transition: all 0.6s ease-out;
+    -o-transition: all 0.6s ease-out;
+    -ms-transition: all 0.6s ease-out;
+    transition: all 0.6s ease-out;
+}
