@@ -30,7 +30,7 @@
 
 .hero h1 {
     /* Text styles */
-    font-size: 4em;
+    font-size: 4rem;
     
     /* Margins */
     margin-top: 0;
@@ -63,7 +63,8 @@
 }
 
 .hr-light {
-    height: 1px;
+    opacity: 0.3;
+    height: 0.1rem;
     width: 90%;
     color: gray;
     background-color: white;

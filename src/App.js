@@ -1,49 +1,62 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
+import React, { Component, Fragment } from "react";
+import { Link, withRouter } from "react-router-dom";
 import Routes from './Routes';
-import Hero from './components/Hero';
 import Footer from './components/Footer';
+import Nav from './components/Nav';
 import './App.scss';
 
 class App extends Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			isAuthenticated: false,	
+			isAuthenticating: true
+		};
+	}
+
+	async componentDidMount() {
+		try {
+			await Auth.currentSession();
+			this.userHasAuthenticated(true);
+	  	}
+	  	catch(e) {
+			if (e !== 'No current user') {
+		  		alert(e);
+			}
+	  	}
+	  	this.setState({ isAuthenticating: false });
+	}
+
+	handleLogout = async event => {
+		await Auth.signOut();
+  		
+  		this.userHasAuthenticated(false);
+
+  		this.props.history.push('/login');
+	}
+
+	userHasAuthenticated = authenticated => {
+		this.setState({ isAuthenticated: authenticated });
+	}
+
 	render() {
+
+		const childProps = {
+			isAuthenticated: this.state.isAuthenticated,
+			userHasAuthenticated: this.userHasAuthenticated
+		};
+
 		return (
+			!this.state.isAuthenticating &&
 			<div className='App'>
 				<header>
-					<nav className='navbar navbar-expand-lg navbar-dark bg-dark fixed-top'>
-						<div className='container'>
-							<a className='navbar-brand funcity-font' href='#'>
-								<img src='./logo-no.png' width='50' class='pr-1' alt='' />
-								DEEM-AI
-							</a>
-							<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
-							    <span class='navbar-toggler-icon'></span>
-							</button>
-							<div class='collapse navbar-collapse' id='navbarSupportedContent'>
-								<ul class='navbar-nav mr-auto'>
-									<li class='nav-item'>
-										<Link to='/' className='nav-link'>Nuestro Equipo</Link>
-									</li>
-									<li class='nav-item'>
-										<Link to='/' className='nav-link'>Productos</Link>
-									</li>
-									<li class='nav-item'>
-										<Link to='/' className='nav-link'>Características</Link>
-									</li>
-									<li class='nav-item'>
-										<Link to='/' className='nav-link'>Qué Hacemos</Link>
-									</li>
-									<li class='nav-item'>
-										<Link to='/' className='nav-link'>Contactenos</Link>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-					<Hero />
+					<Nav isAuthenticated={this.state.isAuthenticated} handleLogout={this.handleLogout}/>
 				</header>
-				<main className='container'>
-					<Routes />
+				<main className='main' role='main'>
+					<Routes childProps={childProps}/>
 				</main>
 				<Footer />
 			</div>
@@ -51,4 +64,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default withRouter(App);
